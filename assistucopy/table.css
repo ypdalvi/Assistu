@@ -1,0 +1,113 @@
+/* .content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-button {
+    position: absolute;
+    bottom: 30px;
+    right: 100px;
+}
+
+.add-btn {
+    margin: 10px 30px;
+    width: 120px;
+    height: 50px;
+    background-color: #009879;
+    border: none;
+    font-size: 1.2rem;
+    box-shadow: 5px 5px 5px #bdbdbd;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+.add-btn:hover {
+    box-shadow: none;
+ } */
+
+.content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-button {
+    position: absolute;
+    bottom: 30px;
+    right: 100px;
+}
+
+.add-btn {
+    margin: 10px 30px;
+    width: 120px;
+    height: 50px;
+    background-color: #009879;
+    border: none;
+    font-size: 1.2rem;
+    box-shadow: 5px 5px 5px #bdbdbd;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+.add-btn:hover {
+    box-shadow: none;
+}

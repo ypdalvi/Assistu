@@ -1,0 +1,193 @@
+<?php
+session_start();
+$usertype = $_SESSION['usertype'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://kit.fontawesome.com/b2b14a414e.js"></script>
+  <meta charset="UTF-8">
+  <title>AssiSTU</title>
+  <link rel="stylesheet" href="../subjects.css">
+  <link rel="stylesheet" href="../../table.css">
+
+</head>
+
+
+<body>
+  <!-- navbar code -->
+
+  <div class="navbar">
+    <div id="cgppt" class="pptbook">
+      <i class="fas fa-file-alt"></i>
+      <span>ppts</span>
+    </div>
+    <div id="cgref" class="pptbook">
+      <i class="fas fa-align-justify"></i>
+      <span>refrence</span>
+    </div>
+  </div>
+
+  <!-- default/ppt code -->
+
+  <div class="container" id="cgcontainer">
+    <?php
+    $conn = mysqli_connect('localhost', 'root', '', 'assistu');
+    if ($usertype == 'c') {
+      if (isset($_POST['teach'])) {
+        $modu = $_POST['modu'];
+        $teach = $_POST['teach'];
+
+        if (isset($_POST['save'])) {
+          $filename = $_FILES['myfile']['name'];
+          $destination = '../../uploads/' . $filename;
+          $extension = pathinfo($filename, PATHINFO_EXTENSION);
+          $file = $_FILES['myfile']['tmp_name'];
+
+          if (!in_array($extension, ['zip', 'pdf', 'docx', 'pptx', 'ppt'])) {
+            echo "You file extension must be .zip, .pdf or .docx or.pptx or.ppt";
+          } else {
+            if (move_uploaded_file($file, $destination)) {
+              $sql = "INSERT INTO `cgppt`(`module`, `teacher`, `name`) VALUES ('$modu','$teach','$filename')";
+              if (mysqli_query($conn, $sql)) {
+                echo "<script>alert('uploaded successfully');</script>";
+              }
+            } else {
+              echo "Failed to upload file.";
+            }
+          }
+        }
+      } ?>
+      <h3>Upload File</h3>
+        <form class="form-content" onsubmit="false" method="post" enctype="multipart/form-data">
+          <div class="form-part-1">
+            <label for="myfile">File Name</label> <br/>
+            <input id="filename" class="form-control" type="file" name='myfile'> <br/>
+            <label for="subdate">Submission Date</label> <br />
+            <input id="subdate" class="form-control" type="date" name='subdate'> <br>
+          </div>
+          <div class="form-part-2">
+            <label for="discription">Assignment Description</label> <br/>
+            <input id="description" class="form-control" type="text" name='discription' placeholder="type here..."> <br>
+            <label for="sub">Subject</label> <br>
+            <input id="subject" class="form-control" type="text" name='sub' placeholder="type here..."> <br>
+            <button class="add-btn" type="submit" name="save"><i class="fas fa-upload"></i> Upload</button>
+          </div>
+        </form>
+    <?php
+    }
+    ?>
+
+    <table>
+      <thead>
+        <th>MODULE</th>
+        <th>TEACHER</th>
+        <th>FILE NAME</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <?php
+        $querry = mysqli_query($conn, "SELECT * FROM cgppt");
+        while ($val = mysqli_fetch_array($querry)) {
+        ?>
+
+          <tr>
+            <th><?php echo $val["module"]; ?></th>
+            <th><?php echo $val["teacher"]; ?></th>
+            <th><?php echo $val["name"]; ?></th>
+            <th><a download="<?php echo $val['name']; ?>" href="../../uploads/<?php echo $val['name']; ?>">download</a></th>
+          </tr>
+
+        <?php
+        }
+        mysqli_close($conn);
+        ?>
+
+      </tbody>
+    </table>
+
+    <!-- refrence code -->
+
+    <div hidden>
+      <div id="cgrefcont">
+        <?php
+        $conn = mysqli_connect('localhost', 'root', '', 'assistu');
+        if ($usertype == 'c') {
+          if (isset($_POST['save'])) {
+            $filename = $_FILES['myfile']['name'];
+            $destination = '../../uploads/' . $filename;
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+            $file = $_FILES['myfile']['tmp_name'];
+
+            if (!in_array($extension, ['zip', 'pdf', 'docx', 'pptx', 'ppt'])) {
+              echo "You file extension must be .zip, .pdf or .docx or.pptx or.ppt";
+            } else {
+              if (move_uploaded_file($file, $destination)) {
+                $sql = "INSERT INTO `cgref`(`name`) VALUES ('$filename')";
+                if (mysqli_query($conn, $sql)) {
+                  echo "<script>alert('uploaded successfully');</script>";
+                }
+              } else {
+                echo "Failed to upload file.";
+              }
+            }
+          }
+        ?>
+          <div class="row">
+            <form onsubmit="false" method="post" enctype="multipart/form-data">
+              <h3>Upload File</h3>
+              <label for="myfile">file name</label>
+              <input type="file" name='myfile'> <br>
+              <button type="submit" name="save">upload</button>
+            </form>
+          </div>
+        <?php
+        }
+        ?>
+
+        <table>
+          <thead>
+            <th>FILE NAME</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <?php
+            $querry = mysqli_query($conn, "SELECT * FROM cgref");
+            while ($val = mysqli_fetch_array($querry)) {
+            ?>
+              <tr>
+                <th><?php echo $val["name"]; ?></th>
+                <th><a download="<?php echo $val['name']; ?>" href="../../uploads/<?php echo $val['name']; ?>">download</a></th>
+              </tr>
+            <?php
+            }
+            mysqli_close($conn);
+            ?>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    container = document.querySelector("#cgcontainer");
+    ppthtml = container.innerHTML;
+    pptb = document.querySelector("#cgppt");
+    pptb.addEventListener('click', function() {
+      console.log("clicekd ppt");
+      container.innerHTML = ppthtml;
+    });
+
+    refb = document.querySelector("#cgref");
+    refb.addEventListener('click', function() {
+      container.innerHTML = document.querySelector("#cgrefcont").innerHTML;
+    });
+  </script>
+
+</body>
+
+</html>

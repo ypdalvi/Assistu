@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-width: thin;
+}
+
+body {
+    background-color: #3aafa9;
+}
+
+
+/* Nav bar */
+
+.navbar {
+    background-color: #def2f1;
+    height: 85px;
+}
+
+
+/* Nav link bar */
+
+.navbar-link {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 10%;
+}
+
+.logo img {
+    margin-left: 30px;
+    width: 130px;
+}
+
+
+/* Profile */
+
+.nav-buttons {
+    width: 10%;
+}
+
+.nav-buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.nav-buttons button:hover {
+    background-color: #3aafa9;
+    color: #feffff;
+}
+
+
+/* Navlinks buttons */
+
+.pptbook {
+    padding: 10px 30px;
+    border-radius: 15px;
+    margin-right: 100px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: #17252a;
+    cursor: pointer;
+}
+
+.pptbook:hover {
+    background-color: #3aafa9;
+    color: #feffff;
+}
+
+.pptbook span {
+    margin-left: 5px;
+}
+
+
+/* Subjects */
+
+.container {
+    margin-top: 100px;
+}
+
+
+/* Subject buttons */
+
+.subject {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 20px;
+    height: 10rem;
+    padding: 20px 20px;
+    text-decoration: none;
+    background-color: #def2f1;
+    font-size: 1.2em;
+    box-shadow: 5px 5px 5px #dddddd;
+    border-radius: 20px;
+}
+
+.subject img {
+    width: 65px;
+    margin: auto;
+}
+
+.subject span {
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.subject:hover {
+    box-shadow: none;
+    border: 2px solid #58c8c3;
+}
+
+.card {
+    height: 70%;
+    width: 80%;
+    background-color: #f6f5f5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 120px 70px;
+    border-radius: 25px;
+    box-shadow: 7px 7px 7px rgb(138, 138, 138);
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+.active {
+    background-color: #3aafa9;
+    color: #feffff;
+}
+
+.form-content {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-part-1 {
+    margin-right: 200px;
+}
+
+.form-content label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+h3 {
+    text-align: center;
+}
